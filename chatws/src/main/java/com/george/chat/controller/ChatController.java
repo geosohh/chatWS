@@ -9,14 +9,9 @@ public class ChatController{
 	
 	public static final String DEFAULT_USERNAME = "user"; 
 	
-	@RequestMapping("/chat")
-	public ModelAndView chat(){
-		return new ModelAndView("chat","username",DEFAULT_USERNAME);
-	}
-	
 	@RequestMapping("/")
 	public ModelAndView index(){
-		return chat();
+		return new ModelAndView("chat","username",DEFAULT_USERNAME);
 	}
 	
 }
