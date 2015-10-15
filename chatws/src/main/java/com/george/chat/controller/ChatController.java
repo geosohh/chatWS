@@ -1,0 +1,17 @@
+package com.george.chat.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
+public class ChatController{
+	
+	public static final String DEFAULT_USERNAME = "user"; 
+	
+	@RequestMapping("/chat")
+	public ModelAndView chat(){
+		return new ModelAndView("chat","username",DEFAULT_USERNAME);
+	}
+	
+}
