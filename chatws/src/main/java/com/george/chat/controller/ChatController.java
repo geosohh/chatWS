@@ -14,4 +14,9 @@ public class ChatController{
 		return new ModelAndView("chat","username",DEFAULT_USERNAME);
 	}
 	
+	@RequestMapping("/")
+	public ModelAndView index(){
+		return chat();
+	}
+	
 }
