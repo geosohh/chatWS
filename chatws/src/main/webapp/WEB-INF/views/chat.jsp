@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		Username: <input type="text" id="username" value="${username}"/> </br>
-		Message: <input type="text" id="message"/> <input type="submit" value="Submit" onclick="sendMessage()"/>
+		Message: <input type="text" id="message"/> <input id="submit" type="submit" value="Submit" onclick="sendMessage()"/>
 		</br>
 		</br>
 		</br>

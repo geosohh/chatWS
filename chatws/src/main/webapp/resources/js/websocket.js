@@ -54,6 +54,8 @@ function sendMessage(){
 					"message" :  document.getElementById("message").value};
 	var jsonText = JSON.stringify(jsonData);
 	websocket.send(jsonText);
+	
+	document.getElementById("message").value = "";
 }
 
 window.addEventListener("load",init,false);

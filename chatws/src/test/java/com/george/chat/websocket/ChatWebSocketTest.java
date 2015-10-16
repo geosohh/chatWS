@@ -30,23 +30,6 @@ public class ChatWebSocketTest{
 		RemoteEndpoint.Basic basicRemoteMock = Mockito.mock(RemoteEndpoint.Basic.class);
 		Mockito.when(session1.getBasicRemote()).thenReturn(basicRemoteMock);
 		Mockito.when(session2.getBasicRemote()).thenReturn(basicRemoteMock);
-		
-		session1.addMessageHandler(new MessageHandler.Whole<String>() {
-			@Override
-			public void onMessage(String jsonText){
-				JsonReader jsonReader = Json.createReader(new StringReader(jsonText));
-				JsonObject jsonData = jsonReader.readObject();
-				Assert.assertTrue("Message received by session1 - "+jsonText,jsonData!=null);
-			}
-		});
-		session2.addMessageHandler(new MessageHandler.Whole<String>() {
-			@Override
-			public void onMessage(String jsonText){
-				JsonReader jsonReader = Json.createReader(new StringReader(jsonText));
-				JsonObject jsonData = jsonReader.readObject();
-				Assert.assertTrue("Message received by session2 - "+jsonText,jsonData!=null);
-			}
-		});
 	}
 	
 	@Test
