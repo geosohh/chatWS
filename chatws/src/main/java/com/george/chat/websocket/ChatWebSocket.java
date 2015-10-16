@@ -68,7 +68,6 @@ public class ChatWebSocket{
 	private void broadcast(String message){
 		for (Session openSession : SESSIONS.keySet()){
 			try {
-				if (openSession.getBasicRemote()==null)
 				openSession.getBasicRemote().sendText(message);
 			} catch (IOException e) {
 				e.printStackTrace();
