@@ -47,7 +47,7 @@ public class ChatWebSocket{
 	
 	@OnMessage
 	public void onMessage(String jsonText, Session session){
-		System.out.println(jsonText);
+		System.out.println("Message received from ("+session.getId()+"): "+jsonText);
 		
 		JsonReader jsonReader = Json.createReader(new StringReader(jsonText));
 		JsonObject jsonData = jsonReader.readObject();
@@ -68,6 +68,7 @@ public class ChatWebSocket{
 	private void broadcast(String message){
 		for (Session openSession : SESSIONS.keySet()){
 			try {
+				if (openSession.getBasicRemote()==null)
 				openSession.getBasicRemote().sendText(message);
 			} catch (IOException e) {
 				e.printStackTrace();
