@@ -1,8 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 
-browser1 = webdriver.Ie()
-browser2 = webdriver.Ie()
+browser1 = webdriver.Chrome()
+browser2 = webdriver.Chrome()
 
 browser1.get("http://localhost:8080/chatws/")
 browser2.get("http://localhost:8080/chatws/")
