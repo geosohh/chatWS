@@ -6,12 +6,8 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.when;
 
-import java.io.StringReader;
-
 import javax.json.Json;
 import javax.json.JsonObject;
-import javax.json.JsonReader;
-import javax.websocket.MessageHandler;
 import javax.websocket.RemoteEndpoint;
 import javax.websocket.Session;
 
