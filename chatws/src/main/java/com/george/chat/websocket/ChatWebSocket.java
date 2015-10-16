@@ -16,21 +16,25 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
+import org.apache.log4j.Logger;
+
 import com.george.chat.controller.ChatController;
 
 @ServerEndpoint("/ws/chat")
 public class ChatWebSocket{
 	private static final Map<Session,String> SESSIONS = Collections.synchronizedMap(new HashMap<Session,String>());
 	
+	private static final Logger LOG = Logger.getLogger(ChatWebSocket.class);
+	
 	@OnOpen
 	public void onOpen(Session session){
-		System.out.println("session open ("+session.getId()+")");
+		LOG.trace("session open ("+session.getId()+")");
 		SESSIONS.put(session, ChatController.DEFAULT_USERNAME);
 	}
 	
 	@OnClose
 	public void onClose(Session session){
-		System.out.println("session closed ("+session.getId()+")");
+		LOG.trace("session closed ("+session.getId()+")");
 		JsonObject jsonData = Json.createObjectBuilder()
 							      .add("username", SESSIONS.get(session))
 							      .add("event", "disconnected").build();
@@ -41,13 +45,13 @@ public class ChatWebSocket{
 	
 	@OnError
 	public void onError(Session session, Throwable thwroable){
-		System.out.println("Error on session "+session.getId()+" ("+SESSIONS.get(session)+"):");
+		LOG.error("Error on session "+session.getId()+" ("+SESSIONS.get(session)+"):");
 		thwroable.printStackTrace();
 	}
 	
 	@OnMessage
 	public void onMessage(String jsonText, Session session){
-		System.out.println("Message received from ("+session.getId()+"): "+jsonText);
+		LOG.trace("Message received from ("+session.getId()+"): "+jsonText);
 		
 		JsonReader jsonReader = Json.createReader(new StringReader(jsonText));
 		JsonObject jsonData = jsonReader.readObject();
