@@ -31,7 +31,7 @@ public class ChatWebSocketTest{
 	@Test
 	public void testChatMessage() throws Exception{
 		JsonObject jsonDataTest1 = Json.createObjectBuilder()
-									   .add("username", "user_1")
+									   .add("username", "user")
 									   .add("message", "test msg 1").build();
 		String msgTest1 = jsonDataTest1.toString();
 
@@ -45,6 +45,11 @@ public class ChatWebSocketTest{
 		
 		websocket.onMessage(msgTest1, session1);
 		websocket.onMessage(msgTest2, session2);
+		
+		websocket.onError(session1,new RuntimeException());
+		
+		websocket.onClose(session1);
+		websocket.onClose(session2);
 		
 		session1.close();
 		session2.close();
